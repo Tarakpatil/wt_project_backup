@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <title>Order Online - Spice Symphony</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+    :root {
+      --primary-color: #fc7f09;
+      --primary-color-light: #fffcfa;
+      --primary-color-dark: #db6e09;
+      --text-dark: #18181b;
+      --text-light: #6b7280;
+      --white: #ffffff;
+      --max-width: 1200px;
+      --error-color: #e74c3c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: var(--primary-color-light);
+      padding: 2rem 1rem;
+    }
+
+    .section__container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 2rem;
+      background-color: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .section__header {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 3rem;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo a {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .logo a span {
+      color: var(--text-dark);
+    }
+
+    .section__description {
+      color: var(--text-light);
+      line-height: 1.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form__grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form__group label {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .form__group input,
+    .form__group select,
+    .form__group textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form__group input:focus,
+    .form__group select:focus,
+    .form__group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(252, 127, 9, 0.2);
+    }
+
+    .form__error {
+      color: var(--error-color);
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    .menu__section {
+      margin-top: 2rem;
+    }
+
+    .menu__header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-color-light);
+    }
+
+    .menu__items {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .menu__item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      background-color: var(--primary-color-light);
+      transition: 0.3s;
+    }
+
+    .menu__item:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu__item-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .menu__item-details h4 {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .menu__item-details p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu__item-price {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .menu__item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity__btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .quantity__btn:hover {
+      background-color: var(--primary-color-dark);
+    }
+
+    .quantity__input {
+      width: 40px;
+      height: 30px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .order__summary {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--primary-color-light);
+      border-radius: 15px;
+    }
+
+    .summary__header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .summary__item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .summary__total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: 2px solid var(--primary-color);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--text-dark);
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      background-color: var(--primary-color);
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-color-dark);
+    }
+
+    .btn i {
+      margin-right: 0.5rem;
+    }
+
+    @media (width > 768px) {
+      .form__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form__group.full-width {
+        grid-column: span 2;
+      }
+
+      .menu__items {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu__item {
+        grid-template-columns: auto 1fr;
+      }
+
+      .menu__item-quantity {
+        grid-column: span 2;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <a href="#">Spice<span>Symphony</span></a>
+  </div>
+
+  <div class="section__container">
+    <h2 class="section__header">Order Online</h2>
+    <p class="section__description">
+      Place your order for delivery or pickup and enjoy our delicious meals from the comfort of your home.
+    </p>
+
+    <form id="orderForm" class="form__grid">
+      <div class="form__group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+        <span class="form__error">Please enter your full name</span>
+      </div>
+
+      <div class="form__group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required>
+        <span class="form__error">Please enter a valid phone number</span>
+      </div>
+
+      <div class="form__group full-width">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+        <span class="form__error">Please enter a valid email address</span>
+      </div>
+
+      <div class="form__group">
+        <label for="orderType">Order Type</label>
+        <select id="orderType" name="orderType" required>
+          <option value="">Select Order Type</option>
+          <option value="delivery">Delivery</option>
+          <option value="pickup">Pickup</option>
+        </select>
+        <span class="form__error">Please select an order type</span>
+      </div>
+
+      <div class="form__group">
+        <label for="time">Preferred Time</label>
+        <select id="time" name="time" required>
+          <option value="">Select Time</option>
+          <option value="asap">As Soon As Possible</option>
+          <option value="12pm">12:00 PM</option>
+          <option value="1pm">1:00 PM</option>
+          <option value="2pm">2:00 PM</option>
+          <option value="6pm">6:00 PM</option>
+          <option value="7pm">7:00 PM</option>
+          <option value="8pm">8:00 PM</option>
+        </select>
+        <span class="form__error">Please select a preferred time</span>
+      </div>
+
+      <div id="deliveryAddress" class="form__group full-width" style="display: none;">
+        <label for="address">Delivery Address</label>
+        <textarea id="address" name="address" rows="3"></textarea>
+        <span class="form__error">Please enter your delivery address</span>
+      </div>
+
+      <div class="form__group full-width">
+        <label for="specialInstructions">Special Instructions (Optional)</label>
+        <textarea id="specialInstructions" name="specialInstructions" rows="2"></textarea>
+      </div>
+
+      <div class="menu__section full-width">
+        <h3 class="menu__header">Menu Items</h3>
+        <div class="menu__items">
+          <!-- Chicken Curry -->
+          <div class="menu__item">
+            <img src="assets/special-1.png" alt="Chicken Curry" class="menu__item-img">
+            <div class="menu__item-details">
+              <h4>Chicken Curry</h4>
+              <p>Diced chicken simmered in curry sauce with mixed veggies</p>
+              <div class="menu__item-price">₹399</div>
+            </div>
+            <div class="menu__item-quantity">
+              <button type="button" class="quantity__btn minus-btn">-</button>
+              <input type="number" min="0" value="0" class="quantity__input" name="chicken_curry">
+              <button type="button" class="quantity__btn plus-btn">+</button>
+            </div>
+          </div>
+
+          <!-- Chicken Stir-Fry -->
+          <div class="menu__item">
+            <img src="assets/special-2.png" alt="Chicken Stir-Fry" class="menu__item-img">
+            <div class="menu__item-details">
+              <h4>Chicken Stir-Fry</h4>
+              <p>Tender chicken strips with colorful fresh vegetables</p>
+              <div class="menu__item-price">₹499</div>
+            </div>
+            <div class="menu__item-quantity">
+              <button type="button" class="quantity__btn minus-btn">-</button>
+              <input type="number" min="0" value="0" class="quantity__input" name="chicken_stir_fry">
+              <button type="button" class="quantity__btn plus-btn">+</button>
+            </div>
+          </div>
+
+          <!-- Chicken Pasta -->
+          <div class="menu__item">
+            <img src="assets/special-3.png" alt="Chicken Pasta" class="menu__item-img">
+            <div class="menu__item-details">
+              <h4>Chicken Pasta</h4>
+              <p>Al dente pasta with chicken strips and vegetables</p>
+              <div class="menu__item-price">₹349</div>
+            </div>
+            <div class="menu__item-quantity">
+              <button type="button" class="quantity__btn minus-btn">-</button>
+              <input type="number" min="0" value="0" class="quantity__input" name="chicken_pasta">
+              <button type="button" class="quantity__btn plus-btn">+</button>
+            </div>
+          </div>
+
+          <!-- Paneer Tikka -->
+          <div class="menu__item">
+            <img src="assets/special-6.jpg" alt="Paneer Tikka" class="menu__item-img">
+            <div class="menu__item-details">
+              <h4>Paneer Tikka</h4>
+              <p>Marinated cottage cheese cubes grilled to perfection</p>
+              <div class="menu__item-price">₹349</div>
+            </div>
+            <div class="menu__item-quantity">
+              <button type="button" class="quantity__btn minus-btn">-</button>
+              <input type="number" min="0" value="0" class="quantity__input" name="paneer_tikka">
+              <button type="button" class="quantity__btn plus-btn">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order__summary full-width">
+        <h4 class="summary__header">Order Summary</h4>
+        <div id="orderItems">
+          <!-- Order items will be displayed here -->
+          <div class="summary__item">
+            <span>No items selected</span>
+            <span>₹0</span>
+          </div>
+        </div>
+        <div class="summary__total">
+          <span>Total Amount</span>
+          <span id="totalAmount">₹0</span>
+        </div>
+
+        <button type="submit" class="btn">
+          <i class="ri-shopping-bag-line"></i> Place Order
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Show/hide delivery address based on order type selection
+    const orderTypeSelect = document.getElementById('orderType');
+    const deliveryAddress = document.getElementById('deliveryAddress');
+    
+    orderTypeSelect.addEventListener('change', function() {
+      if (this.value === 'delivery') {
+        deliveryAddress.style.display = 'block';
+        document.getElementById('address').setAttribute('required', 'required');
+      } else {
+        deliveryAddress.style.display = 'none';
+        document.getElementById('address').removeAttribute('required');
+      }
+    });
+
+    // Handle quantity buttons
+    const menuItems = document.querySelectorAll('.menu__item');
+    const orderItems = document.getElementById('orderItems');
+    const totalAmount = document.getElementById('totalAmount');
+    
+    // Price mapping
+    const prices = {
+      'chicken_curry': 399,
+      'chicken_stir_fry': 499,
+      'chicken_pasta': 349,
+      'paneer_tikka': 349
+    };
+    
+    // Item names mapping
+    const itemNames = {
+      'chicken_curry': 'Chicken Curry',
+      'chicken_stir_fry': 'Chicken Stir-Fry',
+      'chicken_pasta': 'Chicken Pasta',
+      'paneer_tikka': 'Paneer Tikka'
+    };
+
+    menuItems.forEach(item => {
+      const minusBtn = item.querySelector('.minus-btn');
+      const plusBtn = item.querySelector('.plus-btn');
+      const quantityInput = item.querySelector('.quantity__input');
+      
+      minusBtn.addEventListener('click', () => {
+        if (parseInt(quantityInput.value) > 0) {
+          quantityInput.value = parseInt(quantityInput.value) - 1;
+          updateOrderSummary();
+        }
+      });
+      
+      plusBtn.addEventListener('click', () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        updateOrderSummary();
+      });
+      
+      quantityInput.addEventListener('change', () => {
+        if (parseInt(quantityInput.value) < 0) {
+          quantityInput.value = 0;
+        }
+        updateOrderSummary();
+      });
+    });
+
+    // Update order summary
+    function updateOrderSummary() {
+      let total = 0;
+      let itemsHtml = '';
+      let hasItems = false;
+      
+      document.querySelectorAll('.quantity__input').forEach(input => {
+        const quantity = parseInt(input.value);
+        const itemName = input.getAttribute('name');
+        const price = prices[itemName];
+        
+        if (quantity > 0) {
+          hasItems = true;
+          const itemTotal = quantity * price;
+          total += itemTotal;
+          
+          itemsHtml += `
+            <div class="summary__item">
+              <span>${quantity} x ${itemNames[itemName]}</span>
+              <span>₹${itemTotal}</span>
+            </div>
+          `;
+        }
+      });
+      
+      if (!hasItems) {
+        itemsHtml = `
+          <div class="summary__item">
+            <span>No items selected</span>
+            <span>₹0</span>
+          </div>
+        `;
+      }
+      
+      orderItems.innerHTML = itemsHtml;
+      totalAmount.textContent = `₹${total}`;
+    }
+
+    // Form validation
+    const orderForm = document.getElementById('orderForm');
+    
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+      const inputs = orderForm.querySelectorAll('input[required], select[required], textarea[required]');
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.nextElementSibling.style.display = 'block';
+          isValid = false;
+        } else {
+          input.nextElementSibling.style.display = 'none';
+        }
+      });
+      
+      // Check if at least one item is selected
+      let hasItems = false;
+      document.querySelectorAll('.quantity__input').forEach(input => {
+        if (parseInt(input.value) > 0) {
+          hasItems = true;
+        }
+      });
+      
+      if (!hasItems) {
+        alert('Please select at least one food item to continue.');
+        return;
+      }
+      
+      if (isValid) {
+        alert('Your order has been placed successfully! Thank you for ordering with Spice Symphony.');
+        orderForm.reset();
+        updateOrderSummary();
+        if (deliveryAddress.style.display === 'block') {
+          deliveryAddress.style.display = 'none';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

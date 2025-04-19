@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <title>Reserve a Table - Spice Symphony</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+    :root {
+      --primary-color: #fc7f09;
+      --primary-color-light: #fffcfa;
+      --primary-color-dark: #db6e09;
+      --text-dark: #18181b;
+      --text-light: #6b7280;
+      --white: #ffffff;
+      --max-width: 1200px;
+      --error-color: #e74c3c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: var(--primary-color-light);
+      padding: 2rem 1rem;
+    }
+
+    .section__container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background-color: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .section__header {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 3rem;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo a {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .logo a span {
+      color: var(--text-dark);
+    }
+
+    .section__description {
+      color: var(--text-light);
+      line-height: 1.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form__container {
+      position: relative;
+    }
+
+    .reservation__image {
+      display: none;
+    }
+
+    .form__grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form__group label {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .form__group input,
+    .form__group select,
+    .form__group textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form__group input:focus,
+    .form__group select:focus,
+    .form__group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(252, 127, 9, 0.2);
+    }
+
+    .form__error {
+      color: var(--error-color);
+      font-size: 0.875rem;
+      display: none;
+    }
+
+    .time__slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .time__slot {
+      position: relative;
+    }
+
+    .time__slot input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .time__slot label {
+      display: block;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      background-color: var(--white);
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .time__slot input:checked + label {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+    }
+
+    .time__slot label:hover {
+      border-color: var(--primary-color);
+    }
+
+    .seating__options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .seating__option {
+      position: relative;
+    }
+
+    .seating__option input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .seating__option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      background-color: var(--white);
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .seating__option input:checked + label {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 1px var(--primary-color);
+    }
+
+    .seating__option label:hover {
+      border-color: var(--primary-color);
+    }
+
+    .seating__icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .seating__text {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      background-color: var(--primary-color);
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-color-dark);
+    }
+
+    .btn i {
+      margin-right: 0.5rem;
+    }
+
+    .reservation__success {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      transform: scale(0.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .reservation__success.active {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .success__icon {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .success__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .success__message {
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .success__code {
+      background-color: var(--primary-color-light);
+      color: var(--primary-color-dark);
+      font-weight: 700;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+
+    .success__btn {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border: none;
+      font-weight: 500;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .success__btn:hover {
+      background-color: var(--primary-color-dark);
+    }
+
+    @media (width > 768px) {
+      .section__container {
+        padding: 3rem;
+      }
+
+      .form__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form__group.full-width {
+        grid-column: span 2;
+      }
+
+      .reservation__image {
+        display: block;
+        position: absolute;
+        width: 250px;
+        height: auto;
+        right: -100px;
+        top: -50px;
+        z-index: -1;
+        opacity: 0.8;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <a href="#">Spice<span>Symphony</span></a>
+  </div>
+
+  <div class="section__container">
+    <h2 class="section__header">Reserve Your Table</h2>
+    <p class="section__description">
+      Book your table at Spice Symphony for a delightful dining experience with authentic flavors and exceptional service.
+    </p>
+
+    <div class="form__container">
+      <img src="/api/placeholder/250/250" alt="Restaurant Interior" class="reservation__image">
+
+      <form id="reservationForm" class="form__grid">
+        <div class="form__group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+          <span class="form__error">Please enter your full name</span>
+        </div>
+
+        <div class="form__group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+          <span class="form__error">Please enter a valid phone number</span>
+        </div>
+
+        <div class="form__group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+          <span class="form__error">Please enter a valid email address</span>
+        </div>
+
+        <div class="form__group">
+          <label for="guests">Number of Guests</label>
+          <select id="guests" name="guests" required>
+            <option value="">Select</option>
+            <option value="1">1 Person</option>
+            <option value="2">2 People</option>
+            <option value="3">3 People</option>
+            <option value="4">4 People</option>
+            <option value="5">5 People</option>
+            <option value="6">6 People</option>
+            <option value="7+">7+ People (We'll contact you)</option>
+          </select>
+          <span class="form__error">Please select number of guests</span>
+        </div>
+
+        <div class="form__group">
+          <label for="date">Reservation Date</label>
+          <input type="date" id="date" name="date" required min="">
+          <span class="form__error">Please select a valid date</span>
+        </div>
+
+        <div class="form__group">
+          <label>Preferred Time</label>
+          <div class="time__slots">
+            <div class="time__slot">
+              <input type="radio" id="time_12" name="time" value="12:00 PM" required>
+              <label for="time_12">12:00 PM</label>
+            </div>
+            <div class="time__slot">
+              <input type="radio" id="time_1" name="time" value="1:00 PM">
+              <label for="time_1">1:00 PM</label>
+            </div>
+            <div class="time__slot">
+              <input type="radio" id="time_2" name="time" value="2:00 PM">
+              <label for="time_2">2:00 PM</label>
+            </div>
+            <div class="time__slot">
+              <input type="radio" id="time_6" name="time" value="6:00 PM">
+              <label for="time_6">6:00 PM</label>
+            </div>
+            <div class="time__slot">
+              <input type="radio" id="time_7" name="time" value="7:00 PM">
+              <label for="time_7">7:00 PM</label>
+            </div>
+            <div class="time__slot">
+              <input type="radio" id="time_8" name="time" value="8:00 PM">
+              <label for="time_8">8:00 PM</label>
+            </div>
+          </div>
+          <span class="form__error">Please select a time slot</span>
+        </div>
+
+        <div class="form__group full-width">
+          <label>Seating Preference</label>
+          <div class="seating__options">
+            <div class="seating__option">
+              <input type="radio" id="indoor" name="seating" value="Indoor" required>
+              <label for="indoor">
+                <span class="seating__icon"><i class="ri-home-line"></i></span>
+                <span class="seating__text">Indoor Seating</span>
+              </label>
+            </div>
+            <div class="seating__option">
+              <input type="radio" id="outdoor" name="seating" value="Outdoor">
+              <label for="outdoor">
+                <span class="seating__icon"><i class="ri-plant-line"></i></span>
+                <span class="seating__text">Outdoor Seating</span>
+              </label>
+            </div>
+          </div>
+          <span class="form__error">Please select a seating preference</span>
+        </div>
+
+        <div class="form__group full-width">
+          <label for="occasion">Special Occasion (Optional)</label>
+          <select id="occasion" name="occasion">
+            <option value="">Select if applicable</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Business Meeting">Business Meeting</option>
+            <option value="Date Night">Date Night</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form__group full-width">
+          <label for="requests">Special Requests (Optional)</label>
+          <textarea id="requests" name="requests" rows="3" placeholder="Any dietary restrictions or other special requests..."></textarea>
+        </div>
+
+        <div class="form__group full-width">
+          <button type="submit" class="btn">
+            <i class="ri-calendar-check-line"></i> Confirm Reservation
+          </button>
+        </div>
+      </form>
+
+      <div class="reservation__success" id="success">
+        <span class="success__icon"><i class="ri-checkbox-circle-line"></i></span>
+        <h3 class="success__title">Reservation Confirmed!</h3>
+        <p class="success__message">Your table has been reserved successfully. We look forward to serving you.</p>
+        <div class="success__code">Booking ID: <span id="bookingId">SS25041</span></div>
+        <button class="success__btn" id="doneBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
+    
+    // Form validation
+    const reservationForm = document.getElementById('reservationForm');
+    const successScreen = document.getElementById('success');
+    const doneBtn = document.getElementById('doneBtn');
+    
+    reservationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+      const inputs = reservationForm.querySelectorAll('input[required], select[required]');
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          if (input.type === 'radio') {
+            // For radio buttons, show error on the parent group
+            const radioGroup = input.closest('.form__group');
+            radioGroup.querySelector('.form__error').style.display = 'block';
+          } else {
+            input.nextElementSibling.style.display = 'block';
+          }
+          isValid = false;
+        } else {
+          if (input.type === 'radio') {
+            const radioGroup = input.closest('.form__group');
+            radioGroup.querySelector('.form__error').style.display = 'none';
+          } else {
+            input.nextElementSibling.style.display = 'none';
+          }
+        }
+      });
+      
+      if (isValid) {
+        // Generate random booking ID
+        const randomId = 'SS' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('bookingId').textContent = randomId;
+        
+        // Show success screen
+        successScreen.classList.add('active');
+      }
+    });
+    
+    // Reset form and hide success screen when done
+    doneBtn.addEventListener('click', function() {
+      successScreen.classList.remove('active');
+      reservationForm.reset();
+    });
+  </script>
+</body>
+</html>
