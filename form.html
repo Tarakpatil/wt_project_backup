@@ -416,7 +416,7 @@
       <div class="order__summary full-width">
         <h4 class="summary__header">Order Summary</h4>
         <div id="orderItems">
-          <!-- Order items will be displayed here -->
+
           <div class="summary__item">
             <span>No items selected</span>
             <span>₹0</span>
@@ -435,7 +435,7 @@
   </div>
 
   <script>
-    // Show/hide delivery address based on order type selection
+
     const orderTypeSelect = document.getElementById('orderType');
     const deliveryAddress = document.getElementById('deliveryAddress');
     
@@ -449,20 +449,19 @@
       }
     });
 
-    // Handle quantity buttons
+
     const menuItems = document.querySelectorAll('.menu__item');
     const orderItems = document.getElementById('orderItems');
     const totalAmount = document.getElementById('totalAmount');
     
-    // Price mapping
+
     const prices = {
       'chicken_curry': 399,
       'chicken_stir_fry': 499,
       'chicken_pasta': 349,
       'paneer_tikka': 349
     };
-    
-    // Item names mapping
+
     const itemNames = {
       'chicken_curry': 'Chicken Curry',
       'chicken_stir_fry': 'Chicken Stir-Fry',
@@ -495,7 +494,7 @@
       });
     });
 
-    // Update order summary
+
     function updateOrderSummary() {
       let total = 0;
       let itemsHtml = '';
@@ -533,7 +532,7 @@
       totalAmount.textContent = `₹${total}`;
     }
 
-    // Form validation
+
     const orderForm = document.getElementById('orderForm');
     
     orderForm.addEventListener('submit', function(e) {
@@ -551,7 +550,7 @@
         }
       });
       
-      // Check if at least one item is selected
+
       let hasItems = false;
       document.querySelectorAll('.quantity__input').forEach(input => {
         if (parseInt(input.value) > 0) {

@@ -506,16 +506,16 @@
       });
       
       if (isValid) {
-        // Generate random booking ID
+
         const randomId = 'SS' + Math.floor(100000 + Math.random() * 900000);
         document.getElementById('bookingId').textContent = randomId;
         
-        // Show success screen
+
         successScreen.classList.add('active');
       }
     });
     
-    // Reset form and hide success screen when done
+  
     doneBtn.addEventListener('click', function() {
       successScreen.classList.remove('active');
       reservationForm.reset();
