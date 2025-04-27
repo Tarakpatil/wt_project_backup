@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="menu_style.css" />
+    <title>Menu - Spice Symphony</title>
+    <link rel="icon" type="image/x-icon" href="assets/favcon.jpeg"/>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="logo nav__logo">
+          <a href="index.html">Spice<span>Symphony</span></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <span><i class="ri-menu-line"></i></span>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="index.html#special">Special</a></li>
+        <li><a href="index.html#chef">Chef</a></li>
+        <li><a href="index.html#client">Clients</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+      <div class="nav__btn">
+        <a href="reservations.html"><button class="btn"><i class="ri-shopping-bag-fill"></i></button></a>
+      </div>
+    </nav>
+
+    <header class="section__container menu__header">
+      <h1>Our <span>Menu</span></h1>
+      <p class="section__description">
+        Explore our carefully curated selection of authentic dishes, crafted with passion 
+        and the finest ingredients to deliver an unforgettable culinary experience.
+      </p>
+    </header>
+
+    <section class="section__container menu__categories">
+      <div class="category__tabs">
+        <button class="category__tab active" data-category="all">All</button>
+        <button class="category__tab" data-category="mains">Main Course</button>
+        <button class="category__tab" data-category="appetizers">Appetizers</button>
+        <button class="category__tab" data-category="desserts">Desserts</button>
+        <button class="category__tab" data-category="beverages">Beverages</button>
+      </div>
+    </section>
+
+    <section class="section__container menu__container">
+      <div class="menu__grid">
+        <!-- Main Course Items -->
+        <div class="menu__card" data-category="mains">
+          <div class="menu__image">
+            <img src="assets/special-1.png" alt="Butter Chicken" />
+          </div>
+          <div class="menu__content">
+            <div class="menu__info">
+              <h3>Chicken Curry</h3>
+              <p class="menu__price">₹499</p>
+            </div>
+            <p class="menu__description">
+              Tender chicken pieces marinated and cooked in a rich tomato-based curry with butter 
+              and cream, served with steamed rice and naan bread.
+            </p>
+            <div class="menu__footer">
+              <div class="menu__ratings">
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+              </div>
+              <button class="btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu__card" data-category="mains">
+          <div class="menu__image">
+            <img src="assets/food_1.jpeg" alt="Vegetable Biryani" />
+          </div>
+          <div class="menu__content">
+            <div class="menu__info">
+              <h3>Mix Veg</h3>
+              <p class="menu__price">₹449</p>
+            </div>
+            <p class="menu__description">
+              mixed vegetables, aromatic spices, 
+              and fresh herbs, cooked with traditional spices, served with naan and rice.
+            </p>
+            <div class="menu__footer">
+              <div class="menu__ratings">
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-half-fill"></i></span>
+              </div>
+              <button class="btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu__card" data-category="appetizers">
+          <div class="menu__image">
+            <img src="assets/food-3.jpg" alt="Vegetable Samosa" />
+          </div>
+          <div class="menu__content">
+            <div class="menu__info">
+              <h3>Vegetable Samosa</h3>
+              <p class="menu__price">₹199</p>
+            </div>
+            <p class="menu__description">
+              Crispy pastry filled with spiced potatoes, peas, and aromatic spices, 
+              served with mint and tamarind chutneys.
+            </p>
+            <div class="menu__footer">
+              <div class="menu__ratings">
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+              </div>
+              <button class="btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu__card" data-category="desserts">
+          <div class="menu__image">
+            <img src="assets/food-5.png" alt="Gulab Jamun" />
+          </div>
+          <div class="menu__content">
+            <div class="menu__info">
+              <h3>Gulab Jamun</h3>
+              <p class="menu__price">₹249</p>
+            </div>
+            <p class="menu__description">
+              Soft milk-solid dumplings soaked in rose and cardamom flavored sugar syrup, 
+              served warm with a sprinkle of pistachios.
+            </p>
+            <div class="menu__footer">
+              <div class="menu__ratings">
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-line"></i></span>
+              </div>
+              <button class="btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu__card" data-category="beverages">
+          <div class="menu__image">
+            <img src="assets/food-6.png" alt="Masala Chai" />
+          </div>
+          <div class="menu__content">
+            <div class="menu__info">
+              <h3>Masala Chai</h3>
+              <p class="menu__price">₹149</p>
+            </div>
+            <p class="menu__description">
+              Traditional Indian spiced tea simmered with aromatic spices like cardamom, 
+              cinnamon, and ginger, served with a touch of milk.
+            </p>
+            <div class="menu__footer">
+              <div class="menu__ratings">
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-fill"></i></span>
+                <span><i class="ri-star-half-fill"></i></span>
+              </div>
+              <button class="btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section__container menu__cta">
+      <div class="cta__content">
+        <h2>Can't Decide? Try Our Chef's Selection</h2>
+        <p>
+          Enjoy a curated dining experience with our chef's selection featuring signature dishes 
+          that highlight the best of our menu. Perfect for first-time visitors!
+        </p>
+        <a href="reservations.html"><button class="btn">Reserve Table</button></a>
+      </div>
+      <div class="cta__image">
+        <img src="assets/foo-8.png" alt="Chef's Selection" />
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="logo footer__logo">
+            <a href="index.html">Spice<span>Symphony</span></a>
+          </div>
+          <p class="section__description">
+            Embark on a gastronomic journey with Spice Symphony, where every bite tells
+            a story and every dish is crafted to perfection.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Product</h4>
+          <ul class="footer__links">
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#special">Specials</a></li>
+            <li><a href="#">Meal Deals</a></li>
+            <li><a href="#">Catering Options</a></li>
+            <li><a href="#">Seasonal Offerings</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Information</h4>
+          <ul class="footer__links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+            <li><a href="#">Nutrition Information</a></li>
+            <li><a href="#">Allergen Information</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul class="footer__links">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2025 Spice Symphony. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script src="menu_script.js"></script>
+  </body>
+</html>
